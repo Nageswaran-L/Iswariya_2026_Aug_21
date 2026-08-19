@@ -1,0 +1,2218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>For My Favorite Person ❤️</title>
+
+<meta
+  name="description"
+  content="A little birthday surprise made with love."
+>
+
+<style>
+
+  /* =========================================================
+     BASIC COLORS / DESIGN
+     ========================================================= */
+
+  :root {
+    --bg: #fffaf8;
+    --card: #ffffff;
+    --text: #292522;
+    --muted: #7c716b;
+
+    --accent: #e98f9b;
+    --accent-dark: #c96f7c;
+
+    --soft: #f8e8e8;
+    --gold: #d7a84b;
+
+    --shadow: 0 18px 50px rgba(55, 35, 30, 0.08);
+
+    --radius: 24px;
+  }
+
+
+  /* =========================================================
+     GLOBAL
+     ========================================================= */
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+
+    font-family:
+      Inter,
+      ui-sans-serif,
+      system-ui,
+      -apple-system,
+      BlinkMacSystemFont,
+      "Segoe UI",
+      sans-serif;
+
+    background: var(--bg);
+    color: var(--text);
+
+    line-height: 1.6;
+  }
+
+  button {
+    font: inherit;
+  }
+
+  .container {
+    width: min(1080px, 92%);
+    margin: auto;
+  }
+
+
+  /* =========================================================
+     HERO
+     ========================================================= */
+
+  .hero {
+    min-height: 88vh;
+
+    display: grid;
+    place-items: center;
+
+    text-align: center;
+
+    padding: 70px 0 50px;
+  }
+
+  .eyebrow {
+    color: var(--accent-dark);
+
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+
+    font-size: 0.75rem;
+    font-weight: 800;
+  }
+
+  h1 {
+    font-family: Georgia, serif;
+
+    font-size: clamp(3rem, 8vw, 6.5rem);
+
+    line-height: 0.95;
+
+    font-weight: 500;
+
+    margin: 18px 0;
+  }
+
+  .hero p {
+    max-width: 620px;
+
+    margin: 0 auto;
+
+    color: var(--muted);
+
+    font-size: 1.08rem;
+  }
+
+  .heart {
+    display: inline-block;
+
+    animation:
+      float 2.8s ease-in-out infinite;
+  }
+
+  @keyframes float {
+
+    50% {
+      transform: translateY(-7px);
+    }
+
+  }
+
+
+  /* =========================================================
+     BUTTONS
+     ========================================================= */
+
+  .cta {
+    display: inline-flex;
+
+    margin-top: 30px;
+
+    padding: 13px 22px;
+
+    border: 0;
+
+    border-radius: 999px;
+
+    background: var(--text);
+    color: white;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+  }
+
+  .cta:hover {
+    transform: translateY(-2px);
+
+    background: #000;
+  }
+
+
+  /* =========================================================
+     SECTIONS
+     ========================================================= */
+
+  section {
+    padding: 70px 0;
+  }
+
+  .section-title {
+    text-align: center;
+
+    margin-bottom: 35px;
+  }
+
+  .section-title h2 {
+    font-family: Georgia, serif;
+
+    font-size: clamp(2rem, 5vw, 3.3rem);
+
+    font-weight: 500;
+
+    margin: 0 0 8px;
+  }
+
+  .section-title p {
+    color: var(--muted);
+
+    margin: 0;
+  }
+
+
+/* =========================================================
+   PHOTO GRID - MASONRY STYLE
+   ========================================================= */
+
+.photo-grid {
+
+  columns: 4 240px;
+
+  column-gap: 16px;
+
+  width: 100%;
+}
+
+
+.photo {
+
+  position: relative;
+
+  width: 100%;
+
+  margin-bottom: 16px;
+
+  break-inside: avoid;
+
+  overflow: hidden;
+
+  border-radius: 20px;
+
+  background: #f0e5e2;
+
+  box-shadow:
+    0 8px 25px rgba(55, 35, 30, 0.08);
+
+  cursor: pointer;
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+
+.photo:hover {
+
+  transform: translateY(-4px);
+
+  box-shadow:
+    0 18px 35px rgba(55, 35, 30, 0.14);
+}
+
+
+.photo img {
+
+  width: 100%;
+
+  height: auto;
+
+  display: block;
+
+  transition:
+    transform 0.5s ease;
+}
+
+
+.photo:hover img {
+
+  transform: scale(1.035);
+}
+
+
+/* =========================================================
+   PLACEHOLDER
+   ========================================================= */
+
+.placeholder {
+
+  min-height: 220px;
+
+  display: grid;
+
+  place-items: center;
+
+  padding: 20px;
+
+  text-align: center;
+
+  color: #9a8881;
+
+  background:
+    linear-gradient(
+      135deg,
+      #f6e9e5,
+      #f8eeee
+    );
+}
+
+
+/* =========================================================
+   PHOTO LIGHTBOX
+   Click any photo to see it larger.
+   ========================================================= */
+
+.lightbox {
+
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 10000;
+
+  display: none;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 25px;
+
+  background:
+    rgba(25, 20, 20, 0.88);
+
+  backdrop-filter:
+    blur(8px);
+}
+
+
+.lightbox.active {
+
+  display: flex;
+}
+
+
+.lightbox img {
+
+  max-width: 92vw;
+
+  max-height: 88vh;
+
+  object-fit: contain;
+
+  border-radius: 18px;
+
+  box-shadow:
+    0 25px 80px rgba(0, 0, 0, 0.45);
+
+  animation:
+    lightboxAppear 0.25s ease;
+}
+
+
+@keyframes lightboxAppear {
+
+  from {
+
+    opacity: 0;
+
+    transform: scale(0.96);
+
+  }
+
+  to {
+
+    opacity: 1;
+
+    transform: scale(1);
+
+  }
+
+}
+
+
+.lightbox-close {
+
+  position: absolute;
+
+  top: 20px;
+
+  right: 24px;
+
+  width: 46px;
+
+  height: 46px;
+
+  border: 0;
+
+  border-radius: 50%;
+
+  background:
+    rgba(255, 255, 255, 0.16);
+
+  color: white;
+
+  font-size: 1.7rem;
+
+  cursor: pointer;
+
+  transition:
+    0.2s;
+}
+
+
+.lightbox-close:hover {
+
+  background:
+    rgba(255, 255, 255, 0.3);
+
+  transform:
+    rotate(90deg);
+}
+
+/* ==========================================================
+   PHOTO LIGHTBOX
+   ========================================================== */
+
+function openLightbox(src) {
+
+  const lightbox =
+    document.getElementById(
+      "lightbox"
+    );
+
+
+  const lightboxImage =
+    document.getElementById(
+      "lightboxImage"
+    );
+
+
+  lightboxImage.src =
+    src;
+
+
+  lightbox.classList.add(
+    "active"
+  );
+
+
+  document.body.style.overflow =
+    "hidden";
+
+}
+
+
+
+function closeLightbox(event) {
+
+  /*
+    Don't close when clicking
+    directly on the image.
+  */
+
+  if (
+    event.target.id ===
+    "lightboxImage"
+  ) {
+
+    return;
+
+  }
+
+
+  const lightbox =
+    document.getElementById(
+      "lightbox"
+    );
+
+
+  lightbox.classList.remove(
+    "active"
+  );
+
+
+  document.body.style.overflow =
+    "";
+
+}
+
+
+/*
+  Allow ESC key to close
+  the full-screen photo.
+*/
+
+document.addEventListener(
+  "keydown",
+  event => {
+
+    if (
+      event.key === "Escape"
+    ) {
+
+      const lightbox =
+        document.getElementById(
+          "lightbox"
+        );
+
+
+      lightbox.classList.remove(
+        "active"
+      );
+
+
+      document.body.style.overflow =
+        "";
+
+    }
+
+  }
+);
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+  .photo-grid {
+
+    columns: 2 150px;
+
+    column-gap: 10px;
+
+  }
+
+
+  .photo {
+
+    margin-bottom: 10px;
+
+    border-radius: 14px;
+
+  }
+
+}
+
+
+  /* =========================================================
+     QUIZ
+     ========================================================= */
+
+  .quiz-wrap {
+
+    max-width: 760px;
+
+    margin: auto;
+
+    background: var(--card);
+
+    border-radius: var(--radius);
+
+    box-shadow: var(--shadow);
+
+    padding:
+      clamp(24px, 5vw, 48px);
+  }
+
+  .progress {
+
+    height: 6px;
+
+    background: #eee4e1;
+
+    border-radius: 99px;
+
+    overflow: hidden;
+
+    margin-bottom: 28px;
+  }
+
+  .progress-bar {
+
+    height: 100%;
+
+    width: 0;
+
+    background: var(--accent);
+
+    transition: 0.4s;
+  }
+
+  .question-number {
+
+    font-size: 0.8rem;
+
+    color: var(--muted);
+
+    font-weight: 700;
+  }
+
+  .question {
+
+    font-family: Georgia, serif;
+
+    font-size:
+      clamp(1.7rem, 4vw, 2.5rem);
+
+    line-height: 1.15;
+
+    margin: 8px 0 25px;
+  }
+
+  .answers {
+
+    display: grid;
+
+    gap: 11px;
+  }
+
+  .answer {
+
+    border: 1px solid #e8dfdc;
+
+    background: #fff;
+
+    border-radius: 15px;
+
+    padding: 15px 17px;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+  }
+
+  .answer:hover {
+
+    border-color: var(--accent);
+
+    background: #fff8f8;
+
+    transform: translateY(-1px);
+  }
+
+  .answer.correct {
+
+    background: #edf8ef;
+
+    border-color: #7ab886;
+  }
+
+  .answer.wrong {
+
+    background: #fff0f0;
+
+    border-color: #dc8888;
+  }
+
+  .feedback {
+
+    min-height: 30px;
+
+    margin-top: 18px;
+
+    font-weight: 700;
+  }
+
+  .next {
+
+    margin-top: 15px;
+
+    border: 0;
+
+    border-radius: 999px;
+
+    padding: 12px 20px;
+
+    background: var(--text);
+
+    color: #fff;
+
+    cursor: pointer;
+  }
+
+
+  /* =========================================================
+     REWARDS
+     ========================================================= */
+
+  .reward {
+
+    margin-top: 24px;
+
+    padding: 25px;
+
+    border-radius: 18px;
+
+    background: var(--soft);
+
+    text-align: center;
+
+    animation:
+      appear 0.5s ease;
+  }
+
+  @keyframes appear {
+
+    from {
+
+      opacity: 0;
+
+      transform: translateY(10px);
+    }
+
+    to {
+
+      opacity: 1;
+
+      transform: none;
+    }
+
+  }
+
+  .reward h3 {
+
+    font-family: Georgia, serif;
+
+    font-size: 1.8rem;
+
+    margin:
+      0 0 8px;
+  }
+
+  .gift-card {
+
+    display: inline-block;
+
+    margin-top: 15px;
+
+    padding: 13px 18px;
+
+    border-radius: 13px;
+
+    background: white;
+
+    font-weight: 800;
+
+    text-decoration: none;
+
+    color: var(--text);
+
+    box-shadow:
+      0 8px 20px rgba(0, 0, 0, 0.05);
+  }
+
+
+  /* =========================================================
+     VIDEO
+     ========================================================= */
+
+  .video-box video {
+
+    width: 100%;
+
+    max-height: 520px;
+
+    border-radius: 18px;
+
+    background: #111;
+
+    margin-top: 15px;
+  }
+
+
+  /* =========================================================
+     FINAL MESSAGE
+     ========================================================= */
+
+  .final {
+
+    text-align: center;
+
+    padding-bottom: 100px;
+  }
+
+  .final-card {
+
+    background: #fff;
+
+    box-shadow: var(--shadow);
+
+    border-radius: var(--radius);
+
+    padding: 50px 25px;
+  }
+
+  .final-card h2 {
+
+    font-family: Georgia, serif;
+
+    font-size:
+      clamp(2.3rem, 6vw, 4rem);
+
+    font-weight: 500;
+
+    margin:
+      0 0 15px;
+  }
+
+  .final-card p {
+
+    max-width: 620px;
+
+    margin: auto;
+
+    color: var(--muted);
+  }
+
+
+  /* =========================================================
+     FOOTER
+     ========================================================= */
+
+  footer {
+
+    text-align: center;
+
+    padding: 30px;
+
+    color: #a69a94;
+
+    font-size: 0.8rem;
+  }
+
+
+  /* =========================================================
+     UTILITY
+     ========================================================= */
+
+  .hidden {
+    display: none !important;
+  }
+
+
+  /* =========================================================
+     CONFETTI
+     ========================================================= */
+
+  .confetti {
+
+    position: fixed;
+
+    top: -15px;
+
+    width: 9px;
+
+    height: 14px;
+
+    z-index: 9999;
+
+    pointer-events: none;A 
+
+    animation:
+      fall 2.8s linear forwards;
+  }
+
+  @keyframes fall {
+
+    to {
+
+      transform:
+        translate3d(
+          var(--x),
+          110vh,
+          0
+        )
+        rotate(720deg);
+
+      opacity: 0;
+    }
+
+  }
+
+
+  /* =========================================================
+     MOBILE
+     ========================================================= */
+
+  @media (max-width: 700px) {
+
+    .hero {
+      min-height: 78vh;
+    }
+
+    .photo-grid {
+
+      grid-template-columns:
+        repeat(2, 1fr);
+
+      grid-auto-rows: 170px;
+    }
+
+    .photo:nth-child(1) {
+
+      grid-column: span 2;
+
+      grid-row: span 2;
+    }
+
+    .photo:nth-child(4) {
+
+      grid-row: span 1;
+    }
+
+  }
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+     HERO / OPENING
+     ========================================================= -->
+
+<header class="hero">
+
+  <div class="container">
+
+    <div class="eyebrow">
+      A Tiny Birthday Website For
+    </div>
+
+    <h1>
+
+      My favorite<br>
+
+      person
+
+      <span class="heart">
+        ♥
+      </span>
+
+    </h1>
+
+    <p>
+
+      I could have bought you a gift.
+
+      But you said not to send you one.
+
+      But, how can I not celebrate my ammu
+
+      without my quirks.
+
+    </p>
+
+    <button
+      class="cta"
+      onclick="
+        document
+          .querySelector('#memories')
+          .scrollIntoView();
+      "
+    >
+
+      Start the adventure ↓
+
+    </button>
+
+  </div>
+
+</header>
+
+
+
+<main>
+
+
+<!-- =========================================================
+     PHOTO SECTION
+     ========================================================= -->
+
+<section id="memories">
+
+  <div class="container">
+
+    <div class="section-title">
+
+      <h2>
+        Us, in little squares.
+      </h2>
+
+      <p>
+        A completely biased collection
+        of my favorite memories. Infinite
+        kisses and hugs on your way from
+        next week.
+      </p>
+
+    </div>
+
+
+    <div
+      class="photo-grid"
+      id="photoGrid"
+    ></div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     QUIZ SECTION
+     ========================================================= -->
+
+<section id="game">
+
+  <div class="container">
+
+    <div class="section-title">
+
+      <h2>
+        Quiz time, birthday girl. 🎀
+      </h2>
+
+      <p>
+        Let's see how well you know
+        this extremely important relationship.
+      </p>
+
+    </div>
+
+
+    <div class="quiz-wrap">
+
+      <div class="progress">
+
+        <div
+          class="progress-bar"
+          id="progressBar"
+        ></div>
+
+      </div>
+
+
+      <div id="quiz"></div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     FINAL MESSAGE
+     ========================================================= -->
+
+<section
+  id="finalSection"
+  class="final hidden"
+>
+
+  <div class="container">
+
+    <div class="final-card">
+
+      <div class="eyebrow">
+        You unlocked everything
+      </div>
+
+
+      <h2>
+        Happy Birthday, Kannamma! ❤️
+      </h2>
+
+
+      <p>
+
+        My favorite person in this entire world,
+        I am soooooo sorry that I couldn't be there with 
+        you on your most special day. but just one more week to 
+        go until what will be one of the most memorable flight journeys. 
+        
+        I love you maxxx today, tomorrow, and forever. ∞
+        
+        Here's to another beautiful year of us. To more adventures, more laughter, 
+        and most importantly, many, many more birthdays that I'll get to celebrate 
+        right beside you.
+        
+        Stay blessed and amazing as always. 🧿❤️
+
+        <br><br>
+
+        Yours,
+        <br>
+        N
+
+      </p>
+
+
+      <div
+        style="
+          font-size:2rem;
+          margin-top:25px;
+        "
+      >
+
+        ✈️ 💕
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+</main>
+
+<!-- =========================================================
+     PHOTO LIGHTBOX
+     ========================================================= -->
+
+<div
+  class="lightbox"
+  id="lightbox"
+  onclick="closeLightbox(event)"
+>
+
+  <button
+    class="lightbox-close"
+    aria-label="Close photo"
+  >
+    ×
+  </button>
+
+  <img
+    id="lightboxImage"
+    src=""
+    alt="Memory"
+  >
+
+</div>
+
+
+
+<footer>
+
+  Made with entirely too much love ♥
+
+</footer>
+
+
+
+<script>
+
+
+/* ==========================================================
+   ==========================================================
+   
+   ❤️❤️❤️ EASY EDITING AREA ❤️❤️❤️
+   
+   Everything you will normally want to change is below.
+
+   ==========================================================
+   ========================================================== */
+
+
+/* ==========================================================
+   YOUR PHOTOS
+   ==========================================================
+
+   Put your pictures in a folder called "photos".
+
+   Example:
+
+   photos/
+       photo1.jpg
+       photo2.jpg
+       photo3.jpg
+
+   Then list them below.
+
+   You can use JPG, PNG, WEBP, etc.
+   ========================================================== */
+
+const photos = [
+
+  "photos/photo1.jpg",
+
+  "photos/photo2.jpg",
+
+  "photos/photo3.jpg",
+
+  "photos/photo4.jpg",
+
+  "photos/photo5.jpg",
+
+  "photos/photo6.jpg",
+
+  "photos/photo7.jpg",
+
+  "photos/photo8.jpg",
+
+  "photos/photo9.jpg",
+
+  "photos/photo10.jpg",
+
+  "photos/photo11.jpg",
+
+  "photos/photo12.jpg",
+
+  "photos/photo13.jpg",
+
+  "photos/photo14.jpg"
+
+];
+
+
+
+/* ==========================================================
+   QUIZ QUESTIONS
+   ==========================================================
+
+   Each question has:
+
+   question
+   options
+   correct
+   reward
+
+   IMPORTANT:
+
+   "correct" starts counting from ZERO.
+
+   Example:
+
+   options: [
+      "Me",
+      "You",
+      "Both"
+   ]
+
+   If "You" is correct:
+
+   correct: 1
+
+   Because:
+
+   Me   = 0
+   You  = 1
+   Both = 2
+
+   ========================================================== */
+
+
+const quizQuestions = [
+
+
+  /* --------------------------------------------------------
+     QUESTION 1
+     -------------------------------------------------------- */
+
+  {
+
+    question:
+      "What is Nageswaran's official job in this relationship? 😌",
+
+    options: [
+
+      "Husband ❤️",
+
+      "Sidechick 🤭",
+
+      "Boyfriend 😏",
+
+      "Love of my life 🥹"
+
+    ],
+
+    correct: 1,
+
+
+    reward: {
+
+      title:
+        "Spot on! Always your favorite sidechick. 😌💕",
+
+      text:
+        "You've unlocked your first gift. Hope you like it.",
+
+      type:
+        "gift",
+
+      giftName:
+        "Click to Open",
+
+      /*
+        Replace # with your actual gift card link.
+      */
+
+      giftUrl:
+        "#"
+
+    }
+
+  },
+
+
+
+  /* --------------------------------------------------------
+     QUESTION 2
+     -------------------------------------------------------- */
+
+  {
+
+    question:
+      "My absolute favorite view in the entire world is you:",
+
+    options: [
+
+      "Wearing that dress that makes me forget my own name.",
+
+      "Morning mode: bedhead, cozy, and ready for cuddles.",
+
+      "Losing your mind laughing at something we shouldn't be laughing at.",
+
+      "All of the above. I’m obsessed. Deal with it."
+
+    ],
+
+    correct: 3,
+
+
+    reward: {
+
+      title:
+        "You know me too well. ❤️",
+
+      text:
+        "Another little treat has been unlocked.",
+
+      type:
+        "gift",
+
+      giftName:
+        "Click to Open",
+
+      /*
+        Replace # with your actual gift card link.
+      */
+
+      giftUrl:
+        "https://eGft.in/6UdzoCMdDD3d0eI"
+
+    }
+
+  },
+
+
+
+  /* --------------------------------------------------------
+     QUESTION 3
+     -------------------------------------------------------- */
+
+  {
+
+    question:
+      "What do you like the most about me? 👀❤️",
+
+    options: [
+
+      "My Nose 👃",
+
+      "My Voice 🎤",
+
+      "My Eyes 👁️",
+
+      "My Hands 🤲"
+
+    ],
+
+    correct: 0,
+
+
+    reward: {
+
+      title:
+        "Of course... my Nose! 👃😂",
+
+      text:
+        "But unfortunately, that's not something I can offer you right now. Make sure you have a headphone and forgive my flaws.",
+
+      type:
+        "video",
+
+      /*
+        Put your singing video inside:
+
+        videos/birthday-song.mp4
+      */
+
+      videoUrl:
+        "video/birthday-song.mov"
+
+    }
+
+  },
+
+
+
+  /* --------------------------------------------------------
+     QUESTION 4
+     -------------------------------------------------------- */
+
+  {
+
+    question:
+      "What would be the hardest thing for me to do when we are together?",
+
+    options: [
+
+      "Keep my hands to myself when you look that good.",
+
+      "Pretend I’m listening to anything else when you walk into the room.",
+
+      "Resist kissing you, even when you're in the middle of a sentence.",
+
+      "All of the above. It’s gonna be a daily struggle."
+
+    ],
+
+    correct: 3,
+
+
+    reward: {
+
+      title:
+        "The obsession allegations are true. 😂",
+
+      text:
+        "I am sorry I couldn't gift you something physical.",
+
+      type:
+        "text",
+
+
+      /*
+        Replace this with whatever
+        your final surprise should open.
+      */
+
+      //giftUrl:
+      //  "#"
+
+    }
+
+  }
+
+];
+
+
+
+/* ==========================================================
+   
+   DO NOT EDIT BELOW THIS LINE
+
+   Unless you want to customize the functionality.
+
+   ========================================================== */
+
+
+
+/* ==========================================================
+   LOAD PHOTOS
+   ========================================================== */
+
+const photoGrid =
+  document.getElementById(
+    "photoGrid"
+  );
+
+
+photos.forEach(
+  (src, i) => {
+
+    const div =
+      document.createElement(
+        "div"
+      );
+
+
+    div.className =
+      "photo";
+
+
+    const img =
+      document.createElement(
+        "img"
+      );
+
+
+    img.src =
+      src;
+
+
+    img.alt =
+      `Our memory ${i + 1}`;
+
+
+    img.loading =
+      "lazy";
+
+
+    /*
+      Click a photo to open
+      it in full screen.
+    */
+
+    div.addEventListener(
+      "click",
+      () => {
+
+        openLightbox(src);
+
+      }
+    );
+
+
+    /*
+      Show a placeholder if
+      the photo cannot be found.
+    */
+
+    img.onerror =
+      () => {
+
+        div.innerHTML = `
+
+          <div class="placeholder">
+
+            <div>
+
+              <div
+                style="
+                  font-size:2rem;
+                "
+              >
+                📷
+              </div>
+
+              <strong>
+                Memory ${i + 1}
+              </strong>
+
+              <br>
+
+              <small>
+                Add your photo here
+              </small>
+
+            </div>
+
+          </div>
+
+        `;
+
+      };
+
+
+    div.appendChild(
+      img
+    );
+
+
+    photoGrid.appendChild(
+      div
+    );
+
+  }
+);
+
+
+
+/* ==========================================================
+   QUIZ STATE
+   ========================================================== */
+
+let currentQuestion = 0;
+
+let unlocked = 0;
+
+
+
+/* ==========================================================
+   RENDER QUIZ
+   ========================================================== */
+
+function renderQuiz() {
+
+  const quiz =
+    document.getElementById(
+      "quiz"
+    );
+
+
+  const progress =
+    document.getElementById(
+      "progressBar"
+    );
+
+
+  /*
+    If all questions are complete,
+    show completion screen.
+  */
+
+  if (
+    currentQuestion >=
+    quizQuestions.length
+  ) {
+
+    progress.style.width =
+      "100%";
+
+
+    quiz.innerHTML = `
+
+      <div
+        style="
+          text-align:center;
+        "
+      >
+
+        <div
+          style="
+            font-size:3rem;
+          "
+        >
+          🎉
+        </div>
+
+
+        <div class="question">
+          You did it!
+        </div>
+
+
+        <p
+          style="
+            color:var(--muted);
+          "
+        >
+
+          You successfully unlocked
+          all the birthday surprises.
+
+          <br><br>
+
+          PS: Also check your mailbox
+          once you are back home :)
+
+        </p>
+
+
+        <button
+          class="next"
+          onclick="
+            document
+              .getElementById('finalSection')
+              .classList
+              .remove('hidden');
+
+            document
+              .getElementById('finalSection')
+              .scrollIntoView({
+                behavior:'smooth'
+              });
+
+            celebrate();
+          "
+        >
+
+          Open the final message ❤️
+
+        </button>
+
+      </div>
+
+    `;
+
+
+    return;
+
+  }
+
+
+
+  const q =
+    quizQuestions[
+      currentQuestion
+    ];
+
+
+  /*
+    Update progress bar.
+  */
+
+  progress.style.width =
+
+    `${
+      (
+        currentQuestion /
+        quizQuestions.length
+      ) * 100
+    }%`;
+
+
+
+  /*
+    Render question.
+  */
+
+  quiz.innerHTML = `
+
+    <div class="question-number">
+
+      QUESTION
+      ${currentQuestion + 1}
+
+      OF
+
+      ${quizQuestions.length}
+
+    </div>
+
+
+    <div class="question">
+
+      ${q.question}
+
+    </div>
+
+
+    <div class="answers">
+
+      ${
+
+        q.options
+
+          .map(
+            (option, i) =>
+
+              `
+
+              <button
+
+                class="answer"
+
+                onclick="
+                  answerQuestion(${i})
+                "
+
+              >
+
+                ${option}
+
+              </button>
+
+              `
+
+          )
+
+          .join("")
+
+      }
+
+    </div>
+
+
+    <div
+      class="feedback"
+      id="feedback"
+    ></div>
+
+
+    <div
+      id="reward"
+    ></div>
+
+  `;
+
+}
+
+
+
+/* ==========================================================
+   ANSWER QUESTION
+   ========================================================== */
+
+function answerQuestion(selected) {
+
+  const q =
+    quizQuestions[currentQuestion];
+
+  const buttons =
+    document.querySelectorAll(".answer");
+
+  const feedback =
+    document.getElementById("feedback");
+
+
+  /* ==========================================================
+     REMOVE OLD WRONG HIGHLIGHTS
+     ========================================================== */
+
+  buttons.forEach(button => {
+
+    button.classList.remove("wrong");
+
+  });
+
+
+  /* ==========================================================
+     CORRECT ANSWER
+     ========================================================== */
+
+  if (selected === q.correct) {
+
+    /*
+      Disable all answers once
+      the correct answer is found.
+    */
+
+    buttons.forEach(button => {
+
+      button.disabled = true;
+
+    });
+
+
+    buttons[selected].classList.add(
+      "correct"
+    );
+
+
+    feedback.textContent =
+      "Correct! I knew you would get that. 💕";
+
+
+    unlocked++;
+
+
+    showReward(
+      q.reward
+    );
+
+
+    celebrate();
+
+        /*
+      DO NOT automatically move to the next question.
+
+      Instead, add a Next Question button.
+    */
+
+    const quiz = document.getElementById("quiz");
+
+    const nextButton = document.createElement("button");
+
+    nextButton.className = "next";
+
+    nextButton.textContent =
+      currentQuestion === quizQuestions.length - 1
+        ? "Finish the quiz ❤️"
+        : "Next Question →";
+
+
+    nextButton.onclick = () => {
+
+      currentQuestion++;
+
+      renderQuiz();
+
+      /*
+        Scroll slightly so the new question
+        is visible.
+      */
+
+      document
+        .getElementById("game")
+        .scrollIntoView({
+          behavior: "smooth"
+        });
+
+    };
+
+
+    /*
+      Put the button AFTER the reward.
+    */
+
+    quiz.appendChild(nextButton);
+
+  }
+
+
+  /* ==========================================================
+     WRONG ANSWER
+     ========================================================== */
+
+  else {
+
+    /*
+      Highlight ONLY the currently
+      selected wrong answer.
+    */
+
+    buttons[selected].classList.add(
+      "wrong"
+    );
+
+
+    /*
+      Different funny comments.
+    */
+
+    const funnyComments = [
+
+      "Hmmmm... nice try. 😌 Try again!",
+
+      "Are you sure you want to lock that in? 👀😂",
+
+      "Interesting choice... very interesting. 🤨",
+
+      "I'll pretend I didn't see that answer. Try again. 😂",
+
+      "Nope. That's not the answer I was hoping for. 🥲",
+
+      "Wrong answer detected. Relationship status under review. 🚨😂",
+
+      "One more attempt before I start questioning everything. 😌",
+
+      "Bold of you to choose that. Try again. 😂"
+
+    ];
+
+
+    /*
+      Pick a random comment.
+    */
+
+    const randomComment =
+
+      funnyComments[
+        Math.floor(
+          Math.random() *
+          funnyComments.length
+        )
+      ];
+
+
+    feedback.textContent =
+      randomComment;
+
+
+    /*
+      Make sure all buttons remain
+      clickable after a wrong answer.
+    */
+
+    buttons.forEach(button => {
+
+      button.disabled = false;
+
+    });
+
+  }
+
+}
+
+
+/* ==========================================================
+   SHOW REWARD
+   ========================================================== */
+
+function showReward(
+  reward
+) {
+
+  const container =
+    document.getElementById(
+      "reward"
+    );
+  
+
+
+  /*
+    VIDEO REWARD
+  */
+
+  if (
+    reward.type ===
+    "video"
+  ) {
+
+    container.innerHTML = `
+
+      <div class="reward">
+
+        <h3>
+          ${reward.title}
+        </h3>
+
+
+        <p>
+          ${reward.text}
+        </p>
+
+
+        <div class="video-box">
+
+          <video
+            controls
+            playsinline
+          >
+
+            <source
+              src="${reward.videoUrl}"
+              type="video/mp4"
+            >
+
+            Your browser
+            cannot play this video.
+
+          </video>
+
+        </div>
+
+      </div>
+
+    `;
+
+  }
+
+  /*
+    TEXT REWARD (New Type)
+  */
+
+  else if (reward.type === "text") {
+  
+    container.innerHTML = `
+
+  <h3 style="text-align: center;">
+    ${reward.title}
+  </h3>
+
+  <p style="text-align: center;">
+    ${reward.text}
+  </p>
+  
+    `;
+  
+  }
+
+
+  /*
+    GIFT CARD REWARD
+  */
+
+  else {
+
+    container.innerHTML = `
+
+      <div class="reward">
+
+        <h3>
+          ${reward.title}
+        </h3>
+
+
+        <p>
+          ${reward.text}
+        </p>
+
+
+        <a
+
+          class="gift-card"
+
+          href="${reward.giftUrl}"
+
+          target="_blank"
+
+          rel="noopener"
+
+        >
+
+          ${reward.giftName}
+
+          ↗
+
+        </a>
+
+      </div>
+
+    `;
+
+  }
+
+}
+
+
+
+/* ==========================================================
+   CONFETTI
+   ========================================================== */
+
+function celebrate() {
+
+  for (
+    let i = 0;
+    i < 28;
+    i++
+  ) {
+
+    const piece =
+      document.createElement(
+        "div"
+      );
+
+
+    piece.className =
+      "confetti";
+
+
+    piece.style.left =
+      Math.random() * 100 +
+      "vw";
+
+
+    piece.style.setProperty(
+
+      "--x",
+
+      `${
+        (
+          Math.random() - 0.5
+        ) * 240
+      }px`
+
+    );
+
+
+    piece.style.animationDelay =
+
+      Math.random() *
+      0.4 +
+      "s";
+
+
+    /*
+      Confetti colors.
+    */
+
+    piece.style.background =
+
+      [
+
+        "#e98f9b",
+
+        "#d7a84b",
+
+        "#9cb9a5",
+
+        "#9aaedb",
+
+        "#e7c7a5"
+
+      ][
+        Math.floor(
+          Math.random() * 5
+        )
+      ];
+
+
+    document.body.appendChild(
+      piece
+    );
+
+
+    setTimeout(
+      () => {
+
+        piece.remove();
+
+      },
+
+      3500
+
+    );
+
+  }
+
+}
+
+
+
+/* ==========================================================
+   START WEBSITE
+   ========================================================== */
+
+renderQuiz();
+
+
+</script>
+
+</body>
+</html>
